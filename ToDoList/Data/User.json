@@ -1,15 +1,15 @@
 [
   {
     "Id": 1,
-    "Username": "sphynx",
-    "Password": "burak123",
+    "Username": "person1",
+    "Password": "1nosrep",
     "TotalTask": 0,
     "Tasks": []
   },
   {
     "Id": 2,
-    "Username": "burakalparslan44",
-    "Password": "burak123",
+    "Username": "person2",
+    "Password": "2nosrep",
     "TotalTask": 0,
     "Tasks": []
   }
