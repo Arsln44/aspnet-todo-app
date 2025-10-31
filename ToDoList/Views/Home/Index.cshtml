@@ -1,0 +1,51 @@
+﻿@{
+    var tasks = ViewData["tasks"] as List<ToDoList.Models.UserTask>;
+}
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["Message"]
+    </div>
+}
+
+<div class="row">
+    @foreach (var task in tasks)
+    {
+        <div class="col-md-4 mb-3">
+            <div class="card position-relative">
+                <!-- Silme butonu sağ üst köşede -->
+                <form asp-action="DeleteTask" asp-controller="Home" method="post" style="position: absolute; top: 10px; right: 10px;">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="id" value="@task.Id" />
+                    <button type="submit" class="btn btn-sm btn-danger" title="Sil">&times;</button>
+                </form>
+
+                <a href="/Home/EditTask/@task.Id" class="btn btn-sm btn-warning" title="Düzenle" style="position: absolute; top: 10px; right: 40px;">✎</a>
+
+                <div class="card-body">
+                    <h5 class="card-title">@task.Title</h5>
+                    <p class="card-text overflow-auto" style="max-height: 100px;">
+                        @task.Description
+                    </p>
+                </div>
+
+                <!-- CreationTime sol alt köşede -->
+                <div class="card-footer bg-transparent border-0 text-muted small">
+                    Oluşturulma: @task.CreationTime.ToString("dd.MM.yyyy HH:mm")
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<script>
+    setTimeout(function () {
+        var alert = document.querySelector(".alert");
+        if (alert) {
+            var bsAlert = new bootstrap.Alert(alert);
+            bsAlert.close();
+        }
+    }, 3000);
+</script>
+
